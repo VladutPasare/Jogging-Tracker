@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Jogging Tracker" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- ✅ CORECT: application.css -->
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+
+    <!-- 🔹 NAVBAR CONTROLAT PE ROLURI -->
+    <nav>
+      <% if logged_in? %>
+
+        <% if current_user.admin? || current_user.manager? %>
+          <%= link_to "👥 Administrare Useri", users_path %> |
+        <% end %>
+
+        <% unless current_user.manager? %>
+          <% if current_user.admin? %>
+            <%= link_to "🏃 Toate alergările", jogging_entries_path %> |
+          <% else %>
+            <%= link_to "🏃 Alergările mele", jogging_entries_path %> |
+          <% end %>
+        <% end %>
+
+        <%= link_to "🚪 Logout", logout_path,
+      data: { turbo_method: :delete, turbo_confirm: "Sigur vrei să te deloghezi?" },
+      style: "color: white;" %>
+
+      <% else %>
+        <%= link_to "Login", login_path %> |
+        <%= link_to "Sign up", new_user_path %>
+      <% end %>
+    </nav>
+
+    <hr>
+
+    <!-- 🔹 Mesaje flash -->
+    <% if notice %>
+      <p class="flash notice"><%= notice %></p>
+    <% end %>
+
+    <% if alert %>
+      <p class="flash alert"><%= alert %></p>
+    <% end %>
+
+    <!-- 🔹 Conținut pagini -->
+    <main>
+      <%= yield %>
+    </main>
+
+  </body>
+</html>

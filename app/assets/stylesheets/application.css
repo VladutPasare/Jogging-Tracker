@@ -1,0 +1,96 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+ body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background: #2c3e50;
+  padding: 15px;
+}
+
+nav a, nav button {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 25px;
+}
+
+h1 {
+  margin-bottom: 15px;
+}
+
+/* Formular filtre */
+form {
+  margin: 15px 0 25px 0;
+}
+
+form input, form button {
+  padding: 6px 10px;
+  margin-right: 8px;
+}
+
+/* TABEL */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+table th {
+  background: #34495e;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+table tr:nth-child(even) {
+  background: #f2f2f2;
+}
+
+table tr:hover {
+  background: #e8f4ff;
+}
+
+/* link-uri acțiuni */
+td a {
+  color: #2980b9;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+td a:hover {
+  text-decoration: underline;
+}
+
+/* mesaje */
+p {
+  font-size: 14px;
+}
+

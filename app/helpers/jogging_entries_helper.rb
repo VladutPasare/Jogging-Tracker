@@ -1,0 +1,2 @@
+module JoggingEntriesHelper
+end

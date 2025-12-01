@@ -1,0 +1,9 @@
+<h1>Detalii alergare</h1>
+
+<p><strong>Data:</strong> <%= @jogging_entry.date %></p>
+<p><strong>Distanță:</strong> <%= @jogging_entry.distance %> km</p>
+<p><strong>Timp:</strong> <%= @jogging_entry.duration %> minute</p>
+<p><strong>Viteză medie:</strong> <%= @jogging_entry.average_speed.round(2) %> km/h</p>
+
+<%= link_to "Edit", edit_jogging_entry_path(@jogging_entry) %> |
+<%= link_to "Înapoi", jogging_entries_path %>

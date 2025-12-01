@@ -1,0 +1,61 @@
+<h1>
+  <% if current_user.admin? %>
+    🏃 Toate alergările utilizatorilor
+  <% else %>
+    🏃 Alergările mele
+  <% end %>
+</h1>
+
+<% if current_user.regular? %>
+  <%= link_to "Adaugă alergare", new_jogging_entry_path %>
+<% end %>
+
+<br><br>
+
+<form method="get">
+  <label>De la:</label>
+  <input type="date" name="from" value="<%= params[:from] %>">
+
+  <label>Până la:</label>
+  <input type="date" name="to" value="<%= params[:to] %>">
+
+  <button type="submit">Filtrează</button>
+</form>
+
+<br>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <tr style="background: #f2f2f2; font-weight: bold;">
+    <th>Data</th>
+    <th>Distanță (km)</th>
+    <th>Timp (minute)</th>
+    <th>Viteza medie</th>
+    <th>Acțiuni</th>
+  </tr>
+
+  <% @jogging_entries.each do |entry| %>
+    <tr>
+      <td><%= entry.date %></td>
+      <td><%= entry.distance %></td>
+      <td><%= entry.duration %></td>
+      <td><%= entry.average_speed.round(2) %> km/h</td>
+
+      <td>
+        <% if current_user.admin? || entry.user == current_user %>
+          <%= link_to "View", entry %>
+        <% end %>
+
+        <% if current_user.admin? || (current_user.regular? && entry.user == current_user) %>
+          |
+          <%= link_to "Edit", edit_jogging_entry_path(entry) %>
+        <% end %>
+
+        <% if current_user.admin? || (current_user.regular? && entry.user == current_user) %>
+          |
+          <%= link_to "Delete", entry,
+                data: { turbo_method: :delete, turbo_confirm: "Sigur ștergi?" } %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

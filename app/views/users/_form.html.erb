@@ -1,0 +1,43 @@
+<%= form_with model: @user do |f| %>
+  <% if @user.errors.any? %>
+    <div style="color:red">
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+
+  <div>
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <%# 🔑 Manager + admin pot schimba rolul %>
+  <% if current_user&.admin? || current_user&.manager? %>
+    <div>
+      <%= f.label :role %><br>
+      <%= f.select :role, User.roles.keys.map { |r| [r.capitalize, r] } %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

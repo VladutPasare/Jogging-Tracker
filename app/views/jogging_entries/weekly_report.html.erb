@@ -1,0 +1,25 @@
+<h1>Raport săptămânal alergări</h1>
+
+<% if @reports.present? && @reports.any? %>
+  <table border="1">
+    <tr>
+      <th>Săptămână</th>
+      <th>Distanță totală (km)</th>
+      <th>Viteză medie (km/h)</th>
+    </tr>
+
+    <% @reports.each do |r| %>
+      <% avg_speed = r.total_distance.to_f / (r.total_duration.to_f / 60.0) rescue 0 %>
+      <tr>
+        <td><%= r.week %></td>
+        <td><%= r.total_distance %></td>
+        <td><%= avg_speed.round(2) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>Nu există date pentru raportul săptămânal.</p>
+<% end %>
+
+<br>
+<%= link_to "Înapoi la alergări", jogging_entries_path %>

@@ -1,0 +1,30 @@
+<%= form_with model: @jogging_entry do |f| %>
+
+  <% if @jogging_entry.errors.any? %>
+    <ul>
+      <% @jogging_entry.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :date %>
+    <%= f.date_field :date %>
+  </div>
+
+  <div>
+    <%= f.label :distance, "Distance (km)" %>
+    <%= f.number_field :distance, step: 0.1 %>
+  </div>
+
+  <div>
+    <%= f.label :duration, "Time (minutes)" %>
+    <%= f.number_field :duration %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+
+<% end %>
