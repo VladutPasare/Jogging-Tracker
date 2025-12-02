@@ -6,7 +6,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <!-- ✅ CORECT: application.css -->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -27,11 +26,14 @@
           <% else %>
             <%= link_to "🏃 Alergările mele", jogging_entries_path %> |
           <% end %>
+
+          <!-- ✅ Adăugat: Raport săptămânal pentru user & admin -->
+          <%= link_to "📊 Raport săptămânal", weekly_report_jogging_entries_path %> |
         <% end %>
 
         <%= link_to "🚪 Logout", logout_path,
-      data: { turbo_method: :delete, turbo_confirm: "Sigur vrei să te deloghezi?" },
-      style: "color: white;" %>
+          data: { turbo_method: :delete, turbo_confirm: "Sigur vrei să te deloghezi?" },
+          style: "color: white;" %>
 
       <% else %>
         <%= link_to "Login", login_path %> |
